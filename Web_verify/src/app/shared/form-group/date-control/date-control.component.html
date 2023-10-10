@@ -1,0 +1,62 @@
+<div class="pdl-2 pdr-2"
+     [ngClass]="{'control-error': isValidControl(item.key)}">
+    <label class="form-label">{{item.label | translate}}
+        <mat-icon *ngIf="isValidControl(item.key)"
+                  class="mbb-icon ic-error sm fc-error mrl-1">
+        </mat-icon>
+        <span *ngIf="item.required && !isValidControl(item.key)"
+              class="fc-error mrl-1">*</span>
+    </label>
+    <!-- CASE TEXTBOX -->
+    <div class="form-group"
+         [formGroup]="form"
+         [class.error]="isValidControl(item.key) || isValidCustom(item.key, item.customValidate)?.key">
+        <div class="form-input-row">
+            <input #inputElement
+                   class="form-control input-date"
+                   matInput
+                   [matDatepicker]="picker"
+                   autocomplete="false"
+                   [max]="maxDate"
+                   [min]="minDate"
+                   [formControlName]="item.key"
+                   [placeholder]="item.placeholder | translate">
+            <!-- <mat-icon class="mbb-icon md ic-close_blue" matSuffix #picker></mat-icon> -->
+            <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+            <mat-datepicker-toggle matSuffix
+                                   [for]="picker">
+                <mat-icon class="mbb-icon ic-calendar mrr-0 pdb-1"
+                          matDatepickerToggleIcon></mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </div>
+        <div *ngIf="isValidControlDate(item.key, 'required')"
+             class="form-remark">
+            {{'validations.required' | translate}}
+        </div>
+        <div *ngIf="isValidControlDate(item.key, 'max')"
+             class="form-remark">
+            {{'validations.maxlength' | translate : ({ number: item.max })}}
+        </div>
+        <div *ngIf="isValidControlDate(item.key, 'min')"
+             class="form-remark">
+            {{'validations.minlength' | translate : ({ number: item.min })}}
+        </div>
+        <div *ngIf="isValidControlDate(item.key, 'matDatepickerMin')"
+             class="form-remark">
+            {{'validations.min' | translate : ({ number: minDate?.format('DD/MM/YYYY') })}}
+        </div>
+        <div *ngIf="isValidControlDate(item.key, 'matDatepickerParse')"
+             class="form-remark">
+            {{'validations.errortype' | translate}}
+        </div>
+        <div *ngIf="isValidCustom(item.key, item.customValidate)?.key"
+             class="form-remark">
+            {{isValidCustom(item.key, item.customValidate)?.value | translate}}
+        </div>
+        <div *ngIf="isValidControlDate(item.key, 'matDatepickerMax')"
+             class="form-remark">
+            {{'validations.max' | translate : ({ number: maxDate?.format('DD/MM/YYYY') })}}
+        </div>
+    </div>
+</div>

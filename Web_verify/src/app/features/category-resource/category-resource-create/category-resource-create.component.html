@@ -1,0 +1,22 @@
+<div class="mat-dform-title header-dialog-dform fc-primary">
+    <div class="header-dialog-title fc-primary">Tạo mới Resource</div>
+    <button [tabIndex]="'-1'" mat-icon-button (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<div mat-dialog-content class="dform-dialog-content">
+    <div class="panel-body">
+        <form class="panel-body panel-padding" [formGroup]="form" fxLayout="row wrap">
+            <sm-text-control [item]="$name" fxFlex="100" [form]="form"></sm-text-control>
+            <sm-text-control [item]="$key" fxFlex="100" [form]="form"></sm-text-control>
+        </form>
+    </div>
+</div>
+<div mat-dialog-actions class="actions-dialog-dform" fxLayout="row" fxLayoutAlign="end">
+    <button class="btn btn-light-blue btn-xs" (click)="closeDialog()">
+        <span>Trở lại</span>
+    </button>
+    <button class="btn btn-primary btn-xs mrl-4" (click)="saveData()">
+        <span>Lưu thông tin</span>
+    </button>
+</div>

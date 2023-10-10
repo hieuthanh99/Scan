@@ -1,0 +1,11 @@
+
+.text-info-account {
+  padding: 0.5em 0px;
+  margin-right: 2em;
+  display: flex;
+  flex-direction: column;
+  .title-info {
+    color: black;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Scan.App">
+
+    <Style x:Key="ImageBorderStyle" TargetType="Border">
+        <Setter Property="BorderBrush" Value="LightGray"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Margin" Value="10 0"/>
+        <Setter Property="CornerRadius" Value="10"/>
+    </Style>
+
+    <!-- Style cho Image -->
+    <Style x:Key="ImageStyle" TargetType="Image">
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="400"/>
+        <Setter Property="Stretch" Value="UniformToFill"/>
+    </Style>
+
+    <Style x:Key="ImageButtonStyle" TargetType="Image">
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="40 0 40 0"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" Direction="0" ShadowDepth="0" BlurRadius="5"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Style cho nút Previous -->
+    <Style x:Key="PreviousButtonStyle" BasedOn="{StaticResource ImageButtonStyle}" TargetType="Image">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <!-- Style cho nút Next -->
+    <Style x:Key="NextButtonStyle" BasedOn="{StaticResource ImageButtonStyle}" TargetType="Image">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="0 0 40 0"/>
+    </Style>
+</ResourceDictionary>

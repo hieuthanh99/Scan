@@ -1,0 +1,312 @@
+.bpm-div-search {
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+
+  position: absolute;
+  left: 16px;
+  top: 12px;
+
+  .folder {
+    font-family: 'SF UI Display';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+
+    /* Neutral/1 */
+
+    color: #041557;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+
+  .combobox-album {
+
+    box-sizing: border-box;
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 20px;
+    gap: 10px;
+
+    width: 374px;
+    height: 40px;
+
+    /* Neutral/4 */
+    border: 1px solid #E6E8EE;
+    border-radius: 4px;
+
+    font-family: 'SF UI Display';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+
+    /* identical to box height, or 133% */
+
+    /* Neutral/1 */
+    color: #041557;
+  }
+}
+
+
+.btn-create-pdf {
+  background-color: #4A6EF6;
+  color: white;
+  width: 16%;
+  height: 40px;
+  border-radius: 7px;
+  margin-left: 40%;
+}
+
+.image-item-wrapper {
+  height: calc(100vh - 240px);
+  margin-top: 10px;
+  overflow: auto;
+  margin-bottom: 10px;
+
+  .image-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    gap: 4px;
+    width: calc(16.667% - 15px);
+    max-width: calc(16.667% - 15px);
+    height: 159px;
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+    cursor: pointer;
+
+    .image {
+      width: 100%;
+      height: 179px;
+      border-radius: 10px;
+    }
+  }
+
+
+
+  .image-item:first-child,
+  .image-item:nth-child(6n+1) {
+    margin-left: 10px;
+  }
+
+  .image-item:last-child {
+    margin-right: 0px;
+  }
+
+  .checkbox-wrapper {
+    min-height: 30px;
+    height: 30px;
+    width: calc(16.667% - 15px);
+    position: absolute;
+    margin: 5px;
+
+    .checkbox {
+      min-height: 30px;
+      height: 30px;
+      width: 30px;
+      position: absolute;
+      right: 10px;
+      border: #4A6EF6 solid 1px;
+      border-radius: 15px;
+      background-color: white;
+      p{
+        display: none;
+      }
+    }
+
+    .checkboxChecked {
+      @extend .checkbox;
+      background-color: #4A6EF6 !important;
+
+      p {
+        display: inline !important;
+        position: absolute;
+        left: 0%;
+        right: 0%;
+        top: -36.17%;
+        bottom: 18.59%;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16.3702px;
+        line-height: 16px;
+
+        /* identical to box height, or 100% */
+        text-align: center;
+
+        /* White/1 */
+        color: #FFFFFF;
+      }
+    }
+  }
+
+  // .mat-mdc-checkbox {
+  //   position: relative;
+  //   top: -180px;
+  //   width: 100%;
+
+  //   .mdc-form-field {
+  //     position: absolute;
+  //     right: 0px;
+
+  //     .mdc-checkbox__background {
+  //       border-radius: 10px;
+  //       border-color: #4A6EF6;
+  //     }
+  //   }
+  // }
+
+  // .mat-mdc-checkbox-checked {
+  //   .mdc-checkbox__background {
+  //     background-color: #4A6EF6 !important;
+  //   }
+  // }
+
+}
+
+
+
+.hr-solid {
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.btn-footer {
+  margin-top: 10px;
+
+  .btn-create-pdf {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 24px;
+    gap: 10px;
+
+    width: 260px;
+    height: 48px;
+
+    /* Primary/1 */
+    background: #4A6EF6;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+}
+
+.dialog-create-pdf-content {
+  width: 600px;
+  height: 277px;
+  border-radius: 15px;
+
+  .titleName {
+    margin-left: 20px;
+    font-size: 24px;
+  }
+
+  .content-craete-pdf {
+    margin-left: 20px;
+    margin-right: 20px;
+
+    .content-text {
+      .count-text {
+        float: right;
+        margin-left: 76%;
+        color: #4F5B89;
+      }
+    }
+
+    .input-create-pdf {
+      border: 1px solid #4A6EF6;
+      border-radius: 5px;
+      height: 56px;
+
+      .text-name-ablum {
+        background-color: #F7F8FA;
+        line-height: 56px;
+        width: 100%;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+
+        label {
+          margin-left: 8px;
+          margin-right: 8px;
+          width: 98%;
+          font-size: 14px;
+          color: #4F5B89;
+        }
+      }
+
+      .input-text-album {
+        line-height: 56px;
+        width: 100%;
+        float: right;
+
+        input {
+          width: 95%;
+          margin-left: 8px;
+          border: none;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+.btn-footer-dialog {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 40px;
+
+  .btn-cancel {
+    background-color: #F7F8FA;
+    color: black;
+    height: 48px;
+    width: 49%;
+    border-radius: 10px;
+    margin-right: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  .btn-ok {
+    background-color: #4A6EF6;
+    color: white;
+    height: 48px;
+    width: 49%;
+    border-radius: 10px;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: var(--mdc-dialog-container-shape, var(--mdc-shape-medium, 20px)) !important;
+}

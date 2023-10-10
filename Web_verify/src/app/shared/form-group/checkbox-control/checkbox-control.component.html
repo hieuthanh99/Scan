@@ -1,0 +1,19 @@
+<div fxLayout="col wrap"
+     class="mrl-2 p-b-16"
+     *ngIf="item.options.length > 0">
+     <mat-checkbox fxFlex="100"
+                   color="primary"
+                   *ngFor="let control of item.options;  let i=index;"
+                   [checked]="control.checked"
+                   [value]="control.key"
+                   [disabled]="item.type === 'disabled'"
+                   (change)="onCheckboxChange($event)">{{control.value}}</mat-checkbox>
+
+</div>
+<div class="form-group"
+     [class.error]="isValidControl(item.key)">
+     <div *ngIf="isValidControl(item.key, 'required')"
+          class="form-remark">
+          {{item.label}} không được để trống
+     </div>
+</div>

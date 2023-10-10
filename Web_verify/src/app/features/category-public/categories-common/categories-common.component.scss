@@ -1,0 +1,14 @@
+.w-35 {
+  width: 35%;
+}
+.w-65 {
+  width: 70%;
+}
+tr.active {
+  background-color: #ebf3ff;
+  cursor: pointer;
+}
+
+::ng-deep .form-search .form-group {
+  margin: 0!important;
+}

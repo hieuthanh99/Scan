@@ -1,0 +1,73 @@
+::ng-deep cron-editor {
+  .mdc-text-field {
+    background-color: #fff!important;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    padding: 0 10px;
+  }
+
+  .mat-mdc-form-field-infix {
+    min-height: 40px!important;
+    padding: 0px 0px!important;
+    padding-top: 8px!important;
+  }
+
+  .mdc-floating-label--float-above {
+    display: none;
+  }
+  .content-wrapper .mat-form-field-underline {
+    display: none;
+  }
+  .mat-mdc-form-field-focus-overlay {
+    background-color: transparent!important;
+  }
+  .mdc-line-ripple:before {
+    display: none;
+  }
+  .mdc-line-ripple:after {
+    display: none;
+  }
+  .mat-form-field-appearance-fill .mat-mdc-select-arrow-wrapper {
+    transform: translateY(-3px);
+  }
+  .mat-mdc-tab-header {
+    background-color: whitesmoke;
+  }
+  .mdc-tab-indicator--active .mdc-tab-indicator__content {
+    opacity: 0;
+  }
+  * {
+    font-family: Roboto, sans-serif!important;
+  }
+
+
+  .mat-mdc-checkbox.mat-accent {
+    --mdc-checkbox-selected-checkmark-color: #fff;
+    --mdc-checkbox-selected-focus-icon-color: #141ed2;
+    --mdc-checkbox-selected-hover-icon-color: #141ed2;
+    --mdc-checkbox-selected-icon-color: #141ed2;
+    --mdc-checkbox-selected-pressed-icon-color: #141ed2;
+    --mdc-checkbox-unselected-focus-icon-color: #212121;
+    --mdc-checkbox-unselected-hover-icon-color: #212121;
+    --mdc-checkbox-disabled-selected-icon-color: rgba(0, 0, 0, 0.38);
+    --mdc-checkbox-disabled-unselected-icon-color: rgba(0, 0, 0, 0.38);
+    --mdc-checkbox-unselected-icon-color: rgba(0, 0, 0, 0.54);
+    --mdc-checkbox-unselected-pressed-icon-color: rgba(0, 0, 0, 0.54);
+  }
+
+  .mat-mdc-radio-button.mat-accent {
+    --mdc-radio-disabled-selected-icon-color: #000;
+    --mdc-radio-disabled-unselected-icon-color: #000;
+    --mdc-radio-unselected-focus-icon-color: #212121;
+    --mdc-radio-unselected-hover-icon-color: #212121;
+    --mdc-radio-unselected-icon-color: rgba(0, 0, 0, 0.54);
+    --mdc-radio-unselected-pressed-icon-color: rgba(0, 0, 0, 0.54);
+    --mdc-radio-selected-focus-icon-color: #141ed2;
+    --mdc-radio-selected-hover-icon-color: #141ed2;
+    --mdc-radio-selected-icon-color: #141ed2;
+    --mdc-radio-selected-pressed-icon-color: #141ed2;
+    --mat-mdc-radio-ripple-color: #000;
+    --mat-mdc-radio-checked-ripple-color: #141ed2;
+  }
+
+}

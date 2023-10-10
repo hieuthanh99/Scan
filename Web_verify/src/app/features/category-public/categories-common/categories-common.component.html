@@ -1,0 +1,66 @@
+<div class="panel mrt-4 panel-bottom">
+  <div class="panel-heading justify-content-between bdt">
+    <label>
+      {{'DANH MỤC' | uppercase}}
+    </label>
+  </div>
+  <form (ngSubmit)="search()" [formGroup]="form" class="form-search panel-body panel-padding" fxLayout="row" fxLayoutAlign="start center">
+    <sm-text-control [form]="form" [item]="$search" fxFlex="40"></sm-text-control>
+    <sm-dropdown-control class="pdl-3" [item]="$fields" fxFlex="30" [form]="form"></sm-dropdown-control>
+    <div fxFlex="20" fxLayout="row" fxLayoutAlign="end center">
+      <button type="submit" class="btn btn-primary">
+        <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
+      </button>
+    </div>
+  </form>
+  <div class="table-over">
+    <table [@.disabled]="true" [dataSource]="dataSource" class="dform-table table-info w-full" element.htmlForm
+           mat-table
+           matSort>
+      <ng-container matColumnDef="stt">
+        <th *matHeaderCellDef class="text-center" mat-header-cell>STT</th>
+        <td *matCellDef="let element;" class="text-center" mat-cell>{{element.stt}}</td>
+      </ng-container>
+      <ng-container matColumnDef="code">
+        <th *matHeaderCellDef class="text-left" mat-header-cell>Mã</th>
+        <td *matCellDef="let element;" class="text-left" mat-cell>{{element.code}}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th *matHeaderCellDef class="text-left" mat-header-cell>Tên</th>
+        <td *matCellDef="let element;" class="text-left" mat-cell>{{element.name}}</td>
+      </ng-container>
+<!--      <ng-container matColumnDef="status">-->
+<!--        <th *matHeaderCellDef class="text-center" mat-header-cell>isKeycloak</th>-->
+<!--        <td *matCellDef="let element;" class="text-center" mat-cell>{{element.status}}</td>-->
+<!--      </ng-container>-->
+<!--      <ng-container matColumnDef="action">-->
+<!--        <th *matHeaderCellDef class="text-center" mat-header-cell>Action</th>-->
+<!--        <td *matCellDef="let element;" class="text-center" mat-cell>-->
+<!--          <button mat-icon-button>-->
+<!--            <mat-icon class="mbb-icon ic-eye fc-primary mrr-0" matTooltip="Xem thông tin chi tiết">-->
+<!--            </mat-icon>-->
+<!--          </button>-->
+<!--          <button (click)="update(element)" mat-icon-button>-->
+<!--            <mat-icon class="mbb-icon ic-edit fc-primary mrr-0" matTooltip="Chỉnh sửa thông tin">-->
+<!--            </mat-icon>-->
+<!--          </button>-->
+<!--          <button (click)="delete(element)" mat-icon-button>-->
+<!--            <mat-icon class="mbb-icon ic-delete fc-error" matTooltip="Xóa"></mat-icon>-->
+<!--          </button>-->
+<!--        </td>-->
+<!--      </ng-container>-->
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr (click)="rowClick(row)" *matRowDef="let row; columns: displayedColumns;" [class.active]="row.code === selectedRow?.code" mat-row></tr>
+    </table>
+    <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+    </app-no-data>
+  </div>
+  <div class="panel-footer">
+    <dform-pagination-plus #pagePage (page)="handlePageEvent($event)" [pageIndex]="pageIndex"
+                           [pageSizeList]="[5, 10, 15, 20]"
+                           [pageSize]="pageSize" [showPageSizeList]="true" [showTextPage]="false" [totalItem]="totalItem"
+                           [showPageJump]="false"
+                           class="fullWidth">
+    </dform-pagination-plus>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<form [formGroup]="form" fxLayout="row" fxLayoutAlign="start center">
+  <div class="bpm-div-search" fxLayout="row" fxLayoutAlign="start center">
+    <div class="folder">{{'integrate.bpm.profile.complete.folder' | translate}}</div>
+    <select class="combobox-album" (change)="findAlbumById($event)">
+      <option>Chọn thư mục</option>
+      <option *ngFor="let album of albums" [value]="album.id">{{ album.name }}</option>
+    </select>
+  </div>
+</form>
+<div class="hr-solid" style="margin-top: 50px;">
+  <div style="border: 1px solid #ccc;"></div>
+</div>
+<div class="image-item-wrapper">
+  <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <div class="image-item" fxLayout="column" *ngFor="let image of images" (click)="checkedImage(image)">
+      <!-- <img class="image" [src]="s3Url+'/'+image.path" alt=""/> -->
+      <img class="image" [src]="'http://localhost:9933/sscan-rs/v2.0/albums/viewFileS3?path=' | imgSrcSecurity | async" alt=""/>
+      <div class="checkbox-wrapper">
+        <div [ngClass]="{'checkboxChecked': imagePdf.indexOf(image.path) > -1, 'checkbox': imagePdf.indexOf(image.path) < 0}">
+          <p>{{imagePdf.indexOf(image.path) + 1}}</p>
+        </div>
+      </div>
+      <!-- <mat-checkbox color="primary" [checked]="imagePdf.includes(image.path)"
+                    [disabled]="true"></mat-checkbox> -->
+    </div>
+  </div>
+</div>
+
+<div class="hr-solid">
+  <div style="border: 1px solid #ccc;"></div>
+</div>
+<div class="btn-footer">
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <button class="btn-create-pdf" mat-button type="button" [disabled]="nameAlbum == '' || imagePdf.length == 0"
+            (click)="openDialog(myDialog)">Tạo file pdf
+    </button>
+  </div>
+</div>
+
+<ng-template #myDialog>
+  <div class="dialog-create-pdf-content">
+    <P class="titleName" matDialogTitle>Nhập tên file PDF</P>
+    <div class="content-craete-pdf">
+      <div class="content-text" fxLayout="row">
+        <p>
+          Tên tệp PDF <span style="color: red;">*</span>
+        </p>
+        <p class="count-text">{{totalText}}/50</p>
+      </div>
+      <div class="input-create-pdf" fxLayout="row">
+        <div class="text-name-ablum">
+          <label>{{nameAlbum}}</label>
+        </div>
+        <div class="input-text-album">
+          <input type="text" #contentInput (keyup)="countText(contentInput.value)" maxlength="50">
+        </div>
+      </div>
+    </div>
+    <div class="btn-footer-dialog" fxLayout="row">
+      <button class="btn-cancel" (click)="closeDialog()">Hủy</button>
+      <button class="btn-ok">Hoàn Tất</button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,281 @@
+﻿<local:BasePage x:Class="Scan.App.ScanNoLogin"
+                x:TypeArguments="local:ScanNoLoginDynamsoftViewModel"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:local="clr-namespace:Scan.App"
+                mc:Ignorable="d"
+                d:DesignHeight="450"
+                d:DesignWidth="800"
+                Title="ScanNoLogin">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ScanNoLoginStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Border Background="{StaticResource BackgroundF5FCFCBrush}" Margin="10" BorderBrush="White" BorderThickness="1" CornerRadius="10">
+        <Grid Margin="10 0">
+            <Grid.RowDefinitions>
+                <!-- fix sonar <RowDefinition Height="*" MaxHeight="45"></RowDefinition>-->
+                <RowDefinition Name="rowToHide">
+                    <RowDefinition.Style>
+                        <Style TargetType="{x:Type RowDefinition}">
+                            <Setter Property="Height" Value="Auto" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HiddenRowHeader}" Value="True">
+                                    <Setter Property="Height" Value="0" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </RowDefinition.Style>
+                </RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="150"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0"
+                        BorderThickness="0"
+                        CornerRadius="10"
+                        Background="{StaticResource BackgroundF5FCFCBrush}">
+                    <StackPanel Margin="10 0"
+                                VerticalAlignment="Center">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type ComboBox}"
+                                   BasedOn="{StaticResource ChoosePrinterCombobox}">
+                            </Style>
+                            <Style TargetType="{x:Type Button}"
+                                   BasedOn="{StaticResource FuncButton}">
+                            </Style>
+                        </StackPanel.Resources>
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <ComboBox ItemsSource="{Binding ListScanner}"
+                                      SelectedItem="{Binding SelectedScanner}">
+                            </ComboBox>
+
+                            <ComboBox ItemsSource="{Binding ListScanCapabilities}"
+                                      SelectedItem="{Binding SelectedScanCapability}"
+                                      Style="{StaticResource PrinterCapability}">
+                            </ComboBox>
+
+                            <Button IsEnabled="{Binding IsEnableScanButton}" 
+                                    Command="{Binding OnScanFile}"
+                                    Content="Scan"
+                                    Tag="{StaticResource FontAwesomePrintIcon}"
+                                    Margin="0"></Button>
+                            <Button Command="{Binding OnChooseFile}"
+                                    Content="Import"
+                                    Tag="{StaticResource FontAwesomeImportIcon}"
+                                    Margin="0"></Button>
+                        </StackPanel>
+                        <StackPanel>
+                            <Border Padding="0 8 0 0">
+                                <CheckBox HorizontalAlignment="Left" IsChecked="{Binding IsSavePdfSearchable}">
+                                    <TextBlock
+                                            Margin="0 2"
+                                            FontFamily="{StaticResource LatoBold}"
+                                            Text="Lưu file pdf 2 lớp">
+                                    </TextBlock>
+                                </CheckBox>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Grid VerticalAlignment="Center" Grid.Row="1" Background="{StaticResource BackgroundLightBrush}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Border  Grid.Column="0" Grid.ColumnSpan="2" Background="White" BorderThickness="1" BorderBrush="{StaticResource ColorBorder9B9B9BBrush}" CornerRadius="6">
+                        <Button  Style="{StaticResource HeaderPage}" Content="Hình ảnh"></Button>
+                    </Border>
+                  
+
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" 
+                                   HorizontalAlignment="Right"
+                                   Padding="5"
+                                   FontFamily="{StaticResource LatoBold}"
+                                   Visibility="{Binding Path=ListImagesScaned.Count, Converter={local:NumberToVisiblityConverter}}">
+                                <Run Text="{Binding ListImagesScaned.Count, Mode=OneWay}" Foreground="{StaticResource WordRedBrush}"></Run>
+                                <Run Text="trang" Foreground="{StaticResource WordRedBrush}"/>
+                    </TextBlock>
+                </Grid>
+
+                <Border Grid.Row="2"
+                        Background="Transparent"
+                        BorderBrush="{StaticResource BackgroundLightBrush}"
+                        Padding="0 10 0 0">
+
+                    <ScrollViewer>
+                        <ItemsControl ItemsSource="{Binding ListImagesScaned}"
+                                      BorderThickness="0"
+                                      Background="{StaticResource BackgroundVeryLightBrush}"
+                                      ClipToBounds="True"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                    <EventSetter Event="MouseLeftButtonUp"
+                                                 Handler="ItemsControl_MouseDoubleClick" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Margin="0 3 0 0">
+                                        <Grid>
+                                            <Button Style="{StaticResource buttonIconRemoveImages}"
+                                                    Tag="{StaticResource FontAwesomeRemoveIcon}"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Top"
+                                                    Panel.ZIndex="9"
+                                                    Margin="0 -2 -1 0"
+                                                    Foreground="{StaticResource BackgroundVeryLightBrush}"
+                                                    local:ControlHelper.DisableDoubleClick="True"
+                                                    Command="{Binding RelativeSource={RelativeSource AncestorType=Page},
+                                                                                  Path=DataContext.OnRemoveImage}"
+                                                    CommandParameter="{Binding}">
+                                            </Button>
+                                            <Border Width="90"
+                                                    Margin="8 8 9 10"
+                                                    BorderBrush="{StaticResource ForegroundDarkBrush}"
+                                                    BorderThickness="3">
+                                                <Image Source="{Binding ThumbnailPath}"></Image>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+
+            <Border Grid.Row="2"
+                     CornerRadius="10"
+                    Background="{StaticResource BackgroundVeryLightBrush}"
+                    BorderThickness="0 1 0 0"
+                    BorderBrush="{StaticResource BackgroundLightBrush}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Grid.Column="0">
+                        <TextBlock Text="Đường dẫn file lưu trữ:"
+                                   Padding="5 5"
+                                   FontSize="13"
+                                   FontFamily="{StaticResource LatoRegular}"
+                                   Focusable="False">
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <ComboBox Padding="10 0"
+                                     Margin="5 5 -5 5"
+                                     Width="360"
+                                     Height="34" 
+                                     VerticalContentAlignment="Center"
+                                ItemsSource="{Binding ListSavePath}"
+                                      SelectedItem="{Binding SelectedSavePath}">
+                            </ComboBox>
+                            <!-- fix sonar <TextBox Padding="10 0"
+                                     Margin="5 5 -5 5"
+                                     Width="360"
+                                     Height="34"
+                                     VerticalContentAlignment="Center"
+                                     Text="{Binding PathFolder}"
+                                     FontFamily="{StaticResource FontAwesome}">
+                                <TextBox.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius"
+                                                Value="3" />
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>-->
+                            <Button Style="{StaticResource FuncButton}"
+                                    Content="Browser..."
+                                    Command="{Binding OnChooseFolder}">
+                            </Button>
+                        </StackPanel>
+
+                        <TextBlock Text="Tên file lưu:"
+                                   Padding="5 5"
+                                   FontSize="13"
+                                   FontFamily="{StaticResource LatoRegular}"
+                                   Focusable="False">
+                        </TextBlock>
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <TextBox Padding="10 0"
+                                     Margin="5 5 -5 5"
+                                     Width="360"
+                                     Height="34"
+                                     MaxLength="100"
+                                     VerticalContentAlignment="Center"
+                                     Text="{Binding FileName}"
+                                     PreviewTextInput="FileNameValidationTextBox"
+                                     FontFamily="{StaticResource FontAwesome}">
+                                <TextBox.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius"
+                                                Value="3" />
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
+                            <TextBox Padding="5 0"
+                                     Margin="0 5 -5 5"
+                                     Width="50"
+                                     Height="34"
+                                     VerticalContentAlignment="Center"
+                                     Text=".pdf"
+                                     IsReadOnly="true"
+                                     FontFamily="{StaticResource FontAwesome}">
+                                <TextBox.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius"
+                                                Value="3" />
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                Margin="0 0 20 0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                        <Button Style="{StaticResource FuncButton}"
+                                Tag="{StaticResource FontAwesomeDataIcon}"
+                                local:ControlHelper.DisableDoubleClick="True"
+                                Content="Lưu lại"
+                                IsEnabled="{Binding IsEnableSave}"
+                                Command="{Binding OnSaveData}"></Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</local:BasePage>

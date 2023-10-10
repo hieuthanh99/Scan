@@ -1,0 +1,89 @@
+#Chi sua gia tri, khong thay doi key
+# So luong pod duoc tao
+replicaCount: 1
+
+# Khai bao service
+service:
+  type: LoadBalancer
+  #type: LoadBalancer
+  port: 8080
+  targetPort: 8080
+  ip: 10.215.254.32
+
+# Khai bao hostnames
+hostAliases:
+  10.1.18.193: esbinternal.mbbank.com.vn
+  10.1.11.142: esbinternet.mbbank.com.vn
+  10.1.12.245: esbexternal.mbbank.com.vn
+
+# Khai bao su dung configmap
+configMaps:
+  - application.properties
+  - log4j2.xml
+
+# Khai bao su dung PVC
+pvc: false
+namePVC: pvc-cmv
+
+# Khai bao volumeMount
+volumeMountsMap:
+  mountPathconfig: /deployment/config
+  mountPathpodinfo: /deployment/podinfo
+  mountPathPVC: /data
+
+#Khai bao tai nguyen su dung cho pod
+resources:
+  limits:
+    cpu: 1
+    memory: 3Gi
+  requests:
+    cpu: 200m
+    memory: 2Gi
+
+# Khai bao promethus de gia tri promethus true,nguoc lai de false
+promethus: false
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/path: /portal-admin/actuator/prometheus
+  prometheus.io/port: "8080"
+
+# Khai bao HealthCheck de gia tri healthCheck true,nguoc lai de false
+healthCheck: false
+livenessProbe:
+  failureThreshold: 10
+  httpGet:
+    path: /portal-admin/actuator/health
+    port: 8080
+    scheme: HTTP
+  periodSeconds: 30
+  successThreshold: 1
+  timeoutSeconds: 2
+readinessProbe:
+  failureThreshold: 10
+  httpGet:
+    path: /portal-admin/actuator/health
+    port: 8080
+    scheme: HTTP
+  periodSeconds: 30
+  successThreshold: 1
+  timeoutSeconds: 2
+
+# Khai bao bien moi truong
+ENV_PROFILE: tanzu-uat
+JVM_OPTS: -Xms512m -Xmx2048m -Dsun.net.http.retryPost=false -Dhttp.retryPost=false
+
+# Chi dinh pod chay tren node co dinh(chi dung tren live: default hoac ecm)
+nodeName:
+
+##################Khong duoc chinh ben duoi#########################
+# So lan deploy Helm
+numberHelm: H1
+
+# Thong tin image
+image:
+  repository: image_version
+  pullPolicy: Always
+
+# Khai bao secret-registry harbor
+imagePullSecrets:
+ - name: harbor-secret-registry

@@ -1,0 +1,40 @@
+.portal-dialog-title {
+  margin-top: 24px;
+  font-family: Roboto-bold;
+  font-size: 20px;
+  text-align: center;
+  color: $color-blue-primary;
+}
+
+.mat-mdc-dialog-actions {
+  padding: 12px !important;
+}
+
+.header-dialog-dform {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10.5px 24px;
+  box-shadow: inset 0 -1px 0 0 #dedede;
+  background-color: $color-neutral-white;
+  .header-dialog-title {
+    font-family: Roboto-bold;
+    font-size: 18px;
+  }
+}
+
+.dform-dialog-content {
+  padding: 20px;
+
+  &.dform-height {
+    max-height: 80vh !important;
+    overflow: auto !important;
+  }
+
+}
+
+.actions-dialog-dform {
+  padding: 16px 24px !important;
+  box-shadow: inset 0 1px 0 0 #dedede;
+}

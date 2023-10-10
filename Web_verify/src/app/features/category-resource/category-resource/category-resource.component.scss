@@ -1,0 +1,44 @@
+.panel {
+    .table-over {
+        overflow: hidden;
+        .title {
+            background: #ebf3ff;
+            color: #141ed2;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            button {
+                width: 3rem;
+            }
+        }
+        mat-tree.content {
+            mat-tree-node {
+                border-bottom: 1px solid rgba(0,0,0,.12);
+                position: relative;
+                button {
+                    width: 3rem;
+                }
+                mat-progress-bar {
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                }
+            }
+            mat-tree-node:hover {
+                background: #ebf3ff;
+            }
+        }
+        .col-key {
+            width: calc(100% - 550px);
+        }
+        .col-name {
+            width: 400px;
+        }
+        .col-action {
+            width: 150px;
+            text-align: right;
+        }
+    }
+    button {
+        cursor: pointer;
+    }
+}

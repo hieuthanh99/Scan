@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Control\Carousel\CarouselBanner.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\Favorite\FavoritesList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\HistoryLogin\ListUserHistoryLogin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\HistoryLogin\UserInfoItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\Loading\Block.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\Loading\LoadingAnimation.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\MainSidebar\MainSidebar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\SideRightControl\BottomSideBarControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\SideRightControl\SideRightControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Dialogs\Confirm\ConfirmDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="DialogWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Capture\ListCapture.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\HDMTK\HomeScan\HomeScan.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Home\Home.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Login\LoginPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\ScanNoLogin\ScanNoLogin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Control\Carousel\CarouselBanner.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\Carousel\CarouselStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\Favorite\FavoritesList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\HistoryLogin\ListUserHistoryLogin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\HistoryLogin\ListUserInfoStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\HistoryLogin\UserInfoItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\Loading\Block.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\Loading\LoadingAnimation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\MainSidebar\MainSidebar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\MainSidebar\MainSidebarStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\SideRightControl\BottomSideBarControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\SideRightControl\BottomSideBarStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\SideRightControl\SideRightControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\SideRightControl\SideRightStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Dialogs\Confirm\ConfirmDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Dialogs\Confirm\ConfirmDialogStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="DialogWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Capture\CaptureStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Capture\ListCapture.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\HDMTK\HomeScan\HomeScan.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Home\Home.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Home\HomeStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Login\LoginPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Login\LoginStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\ScanNoLogin\ScanNoLogin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\ScanNoLogin\ScanNoLoginStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

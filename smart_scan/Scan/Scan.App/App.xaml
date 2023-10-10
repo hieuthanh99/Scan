@@ -1,0 +1,18 @@
+﻿<Application x:Class="Scan.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Scan.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Assets/Style/Fonts.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Assets/Style/Colors.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Assets/Style/Buttons.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Assets/Style/Texts.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Assets/Style/DataGridRow.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Assets/Style/Scroll.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

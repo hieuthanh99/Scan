@@ -1,0 +1,95 @@
+<h2 class="title-page">Danh mục dùng chung</h2>
+<div fxLayout="row" fxLayoutGap="10">
+  <div fxFlex="35">
+    <app-categories-common (onSelected)="onSelectCategory($event)"></app-categories-common>
+  </div>
+  <div fxFlex="65">
+    <div class="panel mrt-4 panel-bottom">
+      <div class="panel-heading justify-content-between bdt">
+        <label>
+          {{'DANH SÁCH' | uppercase}}
+        </label>
+      </div>
+<!--      <form (ngSubmit)="search()" [formGroup]="form" class="panel-body panel-padding" fxLayout="row wrap">-->
+<!--        <sm-text-control [form]="form" [item]="$appName" fxFlex="50"></sm-text-control>-->
+<!--        &lt;!&ndash;    <sm-text-control [form]="form" [item]="$appCode" fxFlex="50"></sm-text-control>&ndash;&gt;-->
+<!--        &lt;!&ndash;    <sm-text-control [form]="form" [item]="$secretKey" fxFlex="50"></sm-text-control>&ndash;&gt;-->
+<!--        &lt;!&ndash;    <sm-slide-toggle-control [form]="form" [item]="$isKeycloak" fxFlex="50"></sm-slide-toggle-control>&ndash;&gt;-->
+<!--        <div class="pdl-2 mrt-2" fxFlex="100" fxLayout="row" fxLayoutAlign="end center">-->
+<!--          <button class="btn btn-primary mrr-4  pds-16" type="submit">-->
+<!--            <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>-->
+<!--            <span>Tìm kiếm</span>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </form>-->
+      <form (ngSubmit)="search()" [formGroup]="form" class="form-search panel-body panel-padding" fxLayout="row" fxLayoutAlign="start center">
+        <sm-text-control [form]="form" [item]="$search" fxFlex="30"></sm-text-control>
+        <sm-dropdown-control [item]="$fields" fxFlex="30" [form]="form"></sm-dropdown-control>
+        <div fxFlex="25" fxLayout="row" fxLayoutAlign="start center">
+          <button type="submit" class="btn btn-primary mrl-2">
+            <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
+          </button>
+        </div>
+        <div (click)="create()" class="mru-2" fxFlex="30" fxLayout="row" fxLayoutAlign="end center">
+          <button class="btn btn-dark-blue" type="button">
+            <mat-icon class="mbb-icon ic-plus mrl-2"></mat-icon>
+            <span>Tạo mới</span>
+          </button>
+        </div>
+      </form>
+      <div class="table-over">
+        <table [@.disabled]="true" [dataSource]="dataSource" class="dform-table table-info w-full" element.htmlForm
+               mat-table
+               matSort>
+          <ng-container matColumnDef="stt">
+            <th *matHeaderCellDef class="text-center" mat-header-cell>STT</th>
+            <td *matCellDef="let element;" class="text-center" mat-cell>{{element.stt}}</td>
+          </ng-container>
+          <ng-container matColumnDef="code">
+            <th *matHeaderCellDef class="text-left" mat-header-cell>Mã</th>
+            <td *matCellDef="let element;" class="text-left" mat-cell>{{element.code}}</td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th *matHeaderCellDef class="text-left" mat-header-cell>Tên</th>
+            <td *matCellDef="let element;" class="text-left" mat-cell>{{element.name}}</td>
+          </ng-container>
+          <ng-container matColumnDef="description">
+            <th *matHeaderCellDef class="text-left" mat-header-cell>Mô tả</th>
+            <td *matCellDef="let element;" class="text-left" mat-cell>{{element.description}}</td>
+          </ng-container>
+          <ng-container matColumnDef="isActive">
+            <th *matHeaderCellDef class="text-left" style="width: 100px" mat-header-cell>Trạng thái</th>
+            <td *matCellDef="let element;" class="text-left" mat-cell [innerHtml]="status(element)"></td>
+          </ng-container>
+          <ng-container matColumnDef="action">
+            <th *matHeaderCellDef class="text-center" mat-header-cell>Hành động</th>
+            <td *matCellDef="let element;" class="text-center" mat-cell>
+<!--              <button mat-icon-button>-->
+<!--                <mat-icon class="mbb-icon ic-eye fc-primary mrr-0" matTooltip="Xem thông tin chi tiết">-->
+<!--                </mat-icon>-->
+<!--              </button>-->
+              <button (click)="update(element)" mat-icon-button>
+                <mat-icon class="mbb-icon ic-edit fc-primary mrr-0" matTooltip="Chỉnh sửa thông tin">
+                </mat-icon>
+              </button>
+              <button (click)="delete(element)" mat-icon-button>
+                <mat-icon class="mbb-icon ic-delete fc-error" matTooltip="Xóa"></mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+          <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+        </table>
+        <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+        </app-no-data>
+      </div>
+      <div class="panel-footer">
+        <dform-pagination-plus #pagePage (page)="handlePageEvent($event)" [pageIndex]="pageIndex"
+                               [pageSizeList]="[5, 10, 15, 20]"
+                               [pageSize]="pageSize" [showPageSizeList]="true" [showTextPage]="true" [totalItem]="totalItem"
+                               class="fullWidth">
+        </dform-pagination-plus>
+      </div>
+    </div>
+  </div>
+</div>

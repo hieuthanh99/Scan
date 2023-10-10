@@ -1,0 +1,60 @@
+<form [formGroup]="form">
+  <div fxLayout="row" fxLayoutAlign="start">
+    <mat-form-field>
+      <mat-icon matPrefix color="primary">search</mat-icon>
+      <input type="text" matInput formControlName="find"
+             placeholder="{{'integrate.bpm.profile.completed.find'|translate}}">
+      <mat-icon matSuffix color="primary" (click)="clearSearchText()">close</mat-icon>
+    </mat-form-field>
+    <button mat-flat-button color="primary" class="btnSearch"
+            (click)="findPdf()">{{'integrate.bpm.profile.completed.btnSearch'|translate}}</button>
+    <button mat-flat-button extended color="primary" class="btnAttachPlan"
+            [disabled]="pdfChecked.length===0">
+      <mat-icon>file_upload</mat-icon>
+      {{'integrate.bpm.profile.completed.btnAttachPlan'|translate}}</button>
+  </div>
+  <hr/>
+  <div class="pdf-item-wrapper" [ngStyle]="{'width': (pdfSrc ? 66 : 100)+'%'}">
+    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="10px"
+         *ngIf="hasData">
+      <div fxLayout="column" [ngClass]="{'pdf-item': !pdfSrc, 'pdf-item-preview': pdfSrc}"
+           *ngFor="let pdf of pdfs; let i = index"
+           (click)="onCheckChange(pdf)"
+           (contextmenu)="onContextMenu($event,pdf)">
+        <div class="image">
+          <img src="assets/svg/pdf.svg"/>
+        </div>
+        <mat-checkbox color="primary" [checked]="pdfChecked.includes(pdf.path)"
+                      [disabled]="true"></mat-checkbox>
+        <div class="text">{{pdf.name}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="preview-pdf" *ngIf="pdfSrc!==''">
+    <div class="title">
+      <img src="assets/svg/btn_close.svg" (click)="onCloseProfile()"/>
+      <div class="pdf-name">{{pdfName}}</div>
+      <div class="pdf-time">{{pdfTime}}</div>
+    </div>
+    <div class="view-file">
+      <iframe [src]="pdfSrc" width="100%" height="100%"></iframe>
+    </div>
+  </div>
+  <app-no-data *ngIf="!hasData"></app-no-data>
+  <div style="visibility: hidden; position: fixed;"
+       [style.left]="menuTopLeftPosition.x"
+       [style.top]="menuTopLeftPosition.y"
+       [matMenuTriggerFor]="contextMenu"></div>
+  <mat-menu #contextMenu="matMenu">
+    <ng-template matMenuContent let-item="item">
+      <button mat-menu-item extended (click)="onShowProfile(item)">
+        <mat-icon class="visibility">visibility</mat-icon>
+        Xem hồ sơ
+      </button>
+      <button mat-menu-item>
+        <mat-icon class="delete">delete</mat-icon>
+        Xóa hồ sơ
+      </button>
+    </ng-template>
+  </mat-menu>
+</form>

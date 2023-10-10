@@ -1,0 +1,10 @@
+<mat-toolbar class="dform-toolbar">
+  <div fxFlex="15">
+    <ng-select [(ngModel)]="appSelected" [items]="lstAllApp" bindLabel="appName" bindValue="appCode"  (ngModelChange)="appCodeChange()">
+    </ng-select>
+  </div>
+  <!-- <dform-search-header *ngIf="options.menuMode == 1"></dform-search-header> -->
+  <span fxFlex></span>
+ 
+  <app-user></app-user>
+</mat-toolbar>

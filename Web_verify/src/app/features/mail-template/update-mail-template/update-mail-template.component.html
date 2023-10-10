@@ -1,0 +1,24 @@
+<div class="mat-dform-title header-dialog-dform fc-primary">
+    <div class="header-dialog-title fc-primary">Cập nhật Email Template</div>
+    <button [tabIndex]="'-1'" mat-icon-button (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>
+<div mat-dialog-content class="dform-dialog-content">
+    <div class="panel-body">
+        <form class="panel-body panel-padding" [formGroup]="form" fxLayout="row wrap">
+            <sm-text-control [item]="$templateId" fxFlex="100" [form]="form" aria-readonly="true"></sm-text-control>
+            <sm-textarea-control [item]="$subject" fxFlex="100" [form]="form"></sm-textarea-control>
+            <sm-textarea-control [item]="$body" fxFlex="100" [form]="form"></sm-textarea-control>
+            <sm-textarea-control [item]="$description" fxFlex="100" [form]="form"></sm-textarea-control>
+        </form>
+    </div>
+</div>
+<div mat-dialog-actions class="actions-dialog-dform" fxLayout="row" fxLayoutAlign="end">
+    <button class="btn btn-light-blue btn-xs" (click)="closeDialog()">
+        <span>Trở lại</span>
+    </button>
+    <button class="btn btn-primary btn-xs mrl-4" (click)="saveData()">
+        <span>Lưu thông tin</span>
+    </button>
+</div>

@@ -1,0 +1,88 @@
+<h2 class="title-page">Danh mục Ứng dụng</h2>
+<div class="panel mrt-4">
+    <div class="panel-heading justify-content-between bdt">
+        <div fxLayout="row">
+            <div fxLayout="row" fxLayoutAlign="start center" class="mru-2" *ngIf="!panelOpenState">
+                <div class="div-search" fxLayout="row">
+                    <input class="mat-input-element form-control" #inputElement matInput
+                        placeholder="Tìm kiếm thông tin">
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" class="mru-2" *ngIf="!panelOpenState">
+                <button type="submit" class="btn btn-primary mrs-4 pds-4">
+                    <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
+                </button>
+                <button type="button" class="btn btn-gray-600 pds-4" (click)="panelOpenState = !panelOpenState">
+                    <mat-icon class="mbb-icon ic-filter mrl-2"></mat-icon>
+                    <span>Tìm kiếm nâng cao</span>
+                </button>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center" class="mru-2">
+            <button type="button" class="btn btn-dark-blue pds-4 mrl-2" (click)="create()">
+                <mat-icon class="mbb-icon ic-plus mrl-2"></mat-icon>
+                <span>Tạo mới</span>
+            </button>
+        </div>
+    </div>
+    <mat-expansion-panel class="mat-elevation-z0" [expanded]="panelOpenState">
+        <form class="panel-body panel-padding" [formGroup]="form" fxLayout="row wrap" (ngSubmit)="search()">
+            <sm-text-control [item]="$name" fxFlex="50" [form]="form"></sm-text-control>
+            <sm-dropdown-control [item]="$status" fxFlex="50" [form]="form"></sm-dropdown-control>
+            <div fxFlex="100" fxLayoutAlign="end end">
+                <button type="submit" class="btn btn-primary mrr-2 pds-8">
+                    <mat-icon class="mbb-icon ic-search mrl-2"></mat-icon>
+                    <span>Tìm kiếm</span>
+                </button>
+                <button type="submit" class="btn btn-gray-600 mrr-2 pds-8" (click)="panelOpenState = !panelOpenState">
+                    <span>Ẩn tìm kiếm nâng cao</span>
+                </button>
+            </div>
+        </form>
+    </mat-expansion-panel>
+
+    <div class="table-over">
+        <table class="dform-table table-info w-full" element.htmlForm mat-table [dataSource]="dataSource" matSort
+            [@.disabled]="true">
+            <ng-container matColumnDef="stt">
+                <th mat-header-cell *matHeaderCellDef>STT</th>
+                <td mat-cell *matCellDef="let element;" class="df-min-3">{{element.stt}}</td>
+            </ng-container>
+            <ng-container matColumnDef="appName">
+                <th mat-header-cell *matHeaderCellDef>Tên ứng dụng</th>
+                <td mat-cell *matCellDef="let element;" class="df-min-3">{{element.appName}}</td>
+            </ng-container>
+            <ng-container matColumnDef="appCode">
+                <th mat-header-cell *matHeaderCellDef>Mã ứng dụng</th>
+                <td mat-cell *matCellDef="let element;" class="df-min-3">{{element.appCode}}</td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Trạng thái</th>
+                <td mat-cell *matCellDef="let element;" class="df-min-3" [innerHtml]="getStatus(element)"></td>
+            </ng-container>
+            <ng-container matColumnDef="modifiedDate">
+                <th mat-header-cell *matHeaderCellDef>Chỉnh sửa lần cuối</th>
+                <td mat-cell *matCellDef="let element;" class="df-min-3">{{element.updatedDate}}</td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element;">
+                    <button mat-icon-button (click)="update(element)">
+                        <mat-icon class="mbb-icon ic-edit fc-primary mrr-0" matTooltip="Chỉnh sửa thông tin">
+                        </mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <app-no-data *ngIf="!dataSource || (dataSource && dataSource.data && dataSource.data.length === 0)">
+        </app-no-data>
+    </div>
+    <div class="panel-footer">
+        <dform-pagination-plus class="fullWidth" #pagePage [pageIndex]="pageIndex" (page)="pageEvent = $event"
+            [totalItem]="totalItem" [pageSize]="pageSize" [showTextPage]="true" [showPageSizeList]="true"
+            [pageSizeList]="[5, 10, 15, 20]">
+        </dform-pagination-plus>
+    </div>
+</div>

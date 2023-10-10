@@ -1,0 +1,14 @@
+<div class="full-height-frame" fxLayout="row">
+  <mat-tab-group (selectedIndexChange)="tabChange($event)" (selectedTabChange)="onTabChanged($event)">
+    <mat-tab label="{{'integrate.bpm.profile.completed.title' | translate}}">
+      <ng-template matTabContent>
+        <app-bpm-profile-completed></app-bpm-profile-completed>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="{{'integrate.bpm.profile.complete.title' | translate}}">
+      <ng-template matTabContent>
+        <app-bpm-complete-profile></app-bpm-complete-profile>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>

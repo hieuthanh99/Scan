@@ -1,0 +1,21 @@
+.footer-item {
+  width: 69%;
+  position: fixed;
+  z-index: 1000;
+  bottom: 0px;
+  .footer-content{
+    padding: 16px 16px 16px 6px;
+  }
+  .left-btn {
+    margin-right: auto!important;
+  }
+  .select-title{
+    font-family: 'Roboto-bold';
+    font-size: 14px;
+    margin-right: 14px;
+  }
+  .select-number{
+    font-family: 'Roboto-bold';
+    font-size: 14px;
+  }
+}
